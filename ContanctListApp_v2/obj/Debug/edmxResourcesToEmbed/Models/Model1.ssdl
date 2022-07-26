@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ContactListModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BuisnessCategory">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Contact">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="surname" Type="varchar" MaxLength="50" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="password" Type="varchar" MaxLength="50" />
+    <Property Name="categoryId" Type="int" />
+    <Property Name="anotherCategory" Type="varchar" MaxLength="50" />
+    <Property Name="phone" Type="varchar" MaxLength="20" />
+    <Property Name="dateOfBirth" Type="date" />
+    <Property Name="BuisnessCategoryId" Type="int" />
+  </EntityType>
+  <Association Name="FK__Contact__Buisnes__2B3F6F97">
+    <End Role="BuisnessCategory" Type="Self.BuisnessCategory" Multiplicity="0..1" />
+    <End Role="Contact" Type="Self.Contact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BuisnessCategory">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Contact">
+        <PropertyRef Name="BuisnessCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Contact__categor__276EDEB3">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Contact" Type="Self.Contact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Contact">
+        <PropertyRef Name="categoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ContactListModelStoreContainer">
+    <EntitySet Name="BuisnessCategory" EntityType="Self.BuisnessCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Contact__Buisnes__2B3F6F97" Association="Self.FK__Contact__Buisnes__2B3F6F97">
+      <End Role="BuisnessCategory" EntitySet="BuisnessCategory" />
+      <End Role="Contact" EntitySet="Contact" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Contact__categor__276EDEB3" Association="Self.FK__Contact__categor__276EDEB3">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Contact" EntitySet="Contact" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

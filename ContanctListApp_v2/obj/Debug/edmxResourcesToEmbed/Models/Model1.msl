@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ContactListModelStoreContainer" CdmEntityContainer="ContactListEntities">
+    <EntitySetMapping Name="BuisnessCategory">
+      <EntityTypeMapping TypeName="ContactListModel.BuisnessCategory">
+        <MappingFragment StoreEntitySet="BuisnessCategory">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Category">
+      <EntityTypeMapping TypeName="ContactListModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contact">
+      <EntityTypeMapping TypeName="ContactListModel.Contact">
+        <MappingFragment StoreEntitySet="Contact">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="surname" ColumnName="surname" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="categoryId" ColumnName="categoryId" />
+          <ScalarProperty Name="anotherCategory" ColumnName="anotherCategory" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="dateOfBirth" ColumnName="dateOfBirth" />
+          <ScalarProperty Name="BuisnessCategoryId" ColumnName="BuisnessCategoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

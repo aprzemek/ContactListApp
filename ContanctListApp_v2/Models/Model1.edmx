@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ContactListModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BuisnessCategory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="surname" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="password" Type="varchar" MaxLength="50" />
+          <Property Name="categoryId" Type="int" />
+          <Property Name="anotherCategory" Type="varchar" MaxLength="50" />
+          <Property Name="phone" Type="varchar" MaxLength="20" />
+          <Property Name="dateOfBirth" Type="date" />
+          <Property Name="BuisnessCategoryId" Type="int" />
+        </EntityType>
+        <Association Name="FK__Contact__Buisnes__2B3F6F97">
+          <End Role="BuisnessCategory" Type="Self.BuisnessCategory" Multiplicity="0..1" />
+          <End Role="Contact" Type="Self.Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BuisnessCategory">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="BuisnessCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Contact__categor__276EDEB3">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Contact" Type="Self.Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="categoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ContactListModelStoreContainer">
+          <EntitySet Name="BuisnessCategory" EntityType="Self.BuisnessCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Contact__Buisnes__2B3F6F97" Association="Self.FK__Contact__Buisnes__2B3F6F97">
+            <End Role="BuisnessCategory" EntitySet="BuisnessCategory" />
+            <End Role="Contact" EntitySet="Contact" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Contact__categor__276EDEB3" Association="Self.FK__Contact__categor__276EDEB3">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Contact" EntitySet="Contact" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ContactListModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BuisnessCategory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Contact" Relationship="Self.FK__Contact__Buisnes__2B3F6F97" FromRole="BuisnessCategory" ToRole="Contact" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Contact" Relationship="Self.FK__Contact__categor__276EDEB3" FromRole="Category" ToRole="Contact" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="categoryId" Type="Int32" />
+          <Property Name="anotherCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="dateOfBirth" Type="DateTime" Precision="0" />
+          <Property Name="BuisnessCategoryId" Type="Int32" />
+          <NavigationProperty Name="BuisnessCategory" Relationship="Self.FK__Contact__Buisnes__2B3F6F97" FromRole="Contact" ToRole="BuisnessCategory" />
+          <NavigationProperty Name="Category" Relationship="Self.FK__Contact__categor__276EDEB3" FromRole="Contact" ToRole="Category" />
+        </EntityType>
+        <Association Name="FK__Contact__Buisnes__2B3F6F97">
+          <End Role="BuisnessCategory" Type="Self.BuisnessCategory" Multiplicity="0..1" />
+          <End Role="Contact" Type="Self.Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BuisnessCategory">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="BuisnessCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Contact__categor__276EDEB3">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Contact" Type="Self.Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="categoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ContactListEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BuisnessCategory" EntityType="Self.BuisnessCategory" />
+          <EntitySet Name="Category" EntityType="Self.Category" />
+          <EntitySet Name="Contact" EntityType="Self.Contact" />
+          <AssociationSet Name="FK__Contact__Buisnes__2B3F6F97" Association="Self.FK__Contact__Buisnes__2B3F6F97">
+            <End Role="BuisnessCategory" EntitySet="BuisnessCategory" />
+            <End Role="Contact" EntitySet="Contact" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Contact__categor__276EDEB3" Association="Self.FK__Contact__categor__276EDEB3">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Contact" EntitySet="Contact" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ContactListModelStoreContainer" CdmEntityContainer="ContactListEntities">
+          <EntitySetMapping Name="BuisnessCategory">
+            <EntityTypeMapping TypeName="ContactListModel.BuisnessCategory">
+              <MappingFragment StoreEntitySet="BuisnessCategory">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="ContactListModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contact">
+            <EntityTypeMapping TypeName="ContactListModel.Contact">
+              <MappingFragment StoreEntitySet="Contact">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="categoryId" ColumnName="categoryId" />
+                <ScalarProperty Name="anotherCategory" ColumnName="anotherCategory" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="dateOfBirth" ColumnName="dateOfBirth" />
+                <ScalarProperty Name="BuisnessCategoryId" ColumnName="BuisnessCategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
