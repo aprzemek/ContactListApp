@@ -3,6 +3,7 @@
 Simple Contat List Application
 
 As a logged-in user, you can only view the contact lists, if You want to see contact details, You need to register account and log-in.
+
 Main View
 ![main](https://user-images.githubusercontent.com/39875865/181066676-72b62f77-6a91-463a-a542-c198c0a6e5c9.JPG)
 Contact List
